@@ -1,12 +1,16 @@
 # coding=utf-8
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 from .entities.entity import Session, engine, Base
 from .entities.exam import Exam, ExamSchema
 
 # creating the Flask application
 app = Flask(__name__)
+
+#adding FlaskCors
+CORS(app)
 
 # if needed, generate database schema
 Base.metadata.create_all(engine)
@@ -24,7 +28,7 @@ def get_exams():
 
     # serializing as JSON
     session.close()
-    return jsonify(exams)
+    return jsonify(exams.data)
 
 
 @app.route('/exams', methods=['POST'])
@@ -33,7 +37,7 @@ def add_exam():
     posted_exam = ExamSchema(only=('title', 'description'))\
         .load(request.get_json())
 
-    exam = Exam(**posted_exam, created_by="HTTP post request")
+    exam = Exam(**posted_exam.data, created_by="HTTP post request")
 
     # persist exam
     session = Session()
@@ -41,6 +45,6 @@ def add_exam():
     session.commit()
 
     # return created exam
-    new_exam = ExamSchema().dump(exam)
+    new_exam = ExamSchema().dump(exam).data
     session.close()
     return jsonify(new_exam), 201
