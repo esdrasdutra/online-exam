@@ -1,9 +1,7 @@
 # coding=utf-8
 
 from marshmallow import Schema, fields
-
 from sqlalchemy import Column, String
-
 from .entity import Entity, Base
 
 

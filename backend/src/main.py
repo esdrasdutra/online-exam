@@ -1,21 +1,22 @@
 # coding=utf-8
-
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from sqlalchemy.exc import SQLAlchemyError
+from flask_cors import CORS, cross_origin
 
 from .entities.entity import Session, engine, Base
 from .entities.exam import Exam, ExamSchema
 
-# creating the Flask application
+# Creating Flask Application
 app = Flask(__name__)
 
-CORS(app)
+# adding CORS to Flask
+cors = CORS(app, resources={r"/exams": {"origins": "localhost:4200"}})
 
-# if needed, generate database schema
+# generate database schema
 Base.metadata.create_all(engine)
 
-
 @app.route('/exams')
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def get_exams():
     # fetching from the database
     session = Session()
@@ -27,8 +28,7 @@ def get_exams():
 
     # serializing as JSON
     session.close()
-    return jsonify(exams.data)
-
+    return jsonify(exams)
 
 @app.route('/exams', methods=['POST'])
 def add_exam():
@@ -44,6 +44,6 @@ def add_exam():
     session.commit()
 
     # return created exam
-    new_exam = ExamSchema().dump(exam).data
+    new_exam = ExamSchema()
     session.close()
     return jsonify(new_exam), 201
