@@ -5,9 +5,9 @@ from jose import jwt
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = 'bk-samples.auth0.com'
+AUTH0_DOMAIN = 'deved.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'https://online-exam.digituz.com.br'
+API_AUDIENCE = 'online-exam.deved.com.br'
 
 
 class AuthError(Exception):
