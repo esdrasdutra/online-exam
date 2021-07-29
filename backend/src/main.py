@@ -34,7 +34,7 @@ def get_exams():
 
 @app.route('/exams', methods=['POST'])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
-@requires_auth
+#@requires_auth
 def add_exam():
     # mount exam object
     posted_exam = ExamSchema(only=('title', 'description'))\
