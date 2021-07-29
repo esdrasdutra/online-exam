@@ -8,6 +8,7 @@ import {ExamsApiService} from './exams-api.service';
   template: `
     <div>
       <button routerLink="/new-exam">New Exam</button>
+
       <ul>
         <li *ngFor="let exam of examsList">
           {{exam.title}}
@@ -22,7 +23,6 @@ export class ExamsComponent implements OnInit, OnDestroy {
 
   constructor(private examsApi: ExamsApiService) {
   }
-
   ngOnInit() {
     this.examsListSubs = this.examsApi
       .getExams()
