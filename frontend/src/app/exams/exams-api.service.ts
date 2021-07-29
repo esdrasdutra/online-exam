@@ -1,7 +1,8 @@
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable} from 'rxjs';
+import * as Auth0 from 'auth0-web';
 
 import { API_URL } from '../env';
 import { Exam } from './exam.model';
@@ -22,5 +23,15 @@ export class ExamsApiService {
       .get<Exam[]>(`${API_URL}/exams`).pipe(
         catchError(ExamsApiService._handleError)
       );
+  }
+
+  saveExam(exam: Exam): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${Auth0.getAccessToken()}`
+      })
+    };
+    return this.http
+      .post(`${API_URL}/exams`, exam, httpOptions);
   }
 }
