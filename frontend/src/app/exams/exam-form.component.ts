@@ -1,20 +1,25 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {ExamsApiService} from "./exams-api.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ExamsApiService } from "./exams-api.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'exam-form',
   template: `
-    <div>
+    <div class="exam-info">
       <h2>New Exam</h2>
-      <label for="exam-title">Title</label>
-      <input id="exam-title" (keyup)="updateTitle($event)">
-      <label for="exam-description">Description</label>
-      <input id="exam-description" (keyup)="updateDescription($event)">
+      <div>
+        <label for="exam-title">Title: </label>
+        <input id="exam-title" (keyup)="updateTitle($event)">
+      </div>
+      <div>
+        <label for="exam-description">Description: </label>
+        <input id="exam-description" (keyup)="updateDescription($event)">
+      </div>
       <button (click)="saveExam()">Save Exam</button>
     </div>
-  `
+  `,
+  styleUrls: ['./exam-form.component.scss']
 })
 export class ExamFormComponent {
   exam = {
