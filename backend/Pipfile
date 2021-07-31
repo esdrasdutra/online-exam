@@ -10,6 +10,7 @@ flask = "*"
 marshmallow = "*"
 flask-cors = "*"
 python-jose = {extras = ["pycryptodome"], version = "*"}
+alembic = "*"
 
 [dev-packages]
 
