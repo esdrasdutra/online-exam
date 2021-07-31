@@ -1,14 +1,18 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `
-    <div style="text-align:center">
-      <h1>Exams</h1>
-    </div>
-    <h2>Here are the exams created so far: </h2>
+    <mat-toolbar color="primary" class="mat-elevation-z10">
+      <button mat-button routerLink="/">Online Exams</button>
+      <button mat-button routerLink="/about">About</button>
+      <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <div class="view-container">
     <router-outlet></router-outlet>
+    </div>
   `,
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent { }
+export class AppComponent {}
