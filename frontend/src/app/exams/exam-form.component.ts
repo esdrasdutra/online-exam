@@ -1,35 +1,48 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ExamsApiService } from './exams-api.service';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {ExamsApiService} from "./exams-api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'exam-form',
   template: `
-    <div class="container">
-      <div class="exam-container">
-        <h2>New Exam</h2>
-        <div>
-          <label for="exam-title">Title: </label>
-          <input id="exam-title" (keyup)="updateTitle($event)" />
-        </div>
-        <div>
-          <label for="exam-description">Description: </label>
-          <input id="exam-description" (keyup)="updateDescription($event)" />
-        </div>
-        <button (click)="saveExam()">Save Exam</button>
-      </div>
-    </div>
+    <mat-card>
+      <h2>New Exam</h2>
+        <mat-form-field class="full-width">
+          <input matInput
+                 placeholder="Title"
+                 (keyup)="updateTitle($event)">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput
+                 placeholder="Description"
+                 (keyup)="updateDescription($event)">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <textarea rows="5"
+                    matInput
+                    placeholder="Long Description"
+                    (keyup)="updateLongDescription($event)"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button
+                color="primary"
+                (click)="saveExam()">
+          Save Exam
+        </button>
+    </mat-card>
   `,
-  styleUrls: ['./exam-form.component.scss'],
+  styleUrls:['./exam-form.component.scss']
 })
 export class ExamFormComponent {
   exam = {
     title: '',
     description: '',
+    long_description: '',
   };
 
-  constructor(private examsApi: ExamsApiService, private router: Router) {}
+  constructor(private examsApi: ExamsApiService, private router: Router) { }
 
   updateTitle(event: any) {
     this.exam.title = event.target.value;
@@ -39,10 +52,16 @@ export class ExamFormComponent {
     this.exam.description = event.target.value;
   }
 
+  updateLongDescription(event: any) {
+    this.exam.long_description = event.target.value;
+  }
+
   saveExam() {
-    this.examsApi.saveExam(this.exam).subscribe(
-      () => this.router.navigate(['/']),
-      (error) => alert(error.message)
-    );
+    this.examsApi
+      .saveExam(this.exam)
+      .subscribe(
+        () => this.router.navigate(['/']),
+        error => alert(error.message)
+      );
   }
 }

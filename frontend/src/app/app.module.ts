@@ -7,6 +7,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
 
 import {ExamFormComponent} from './exams/exam-form.component';
 import {ExamsComponent} from './exams/exams.component';
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatToolbarModule,
     MatCardModule,
+    MatInputModule,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(

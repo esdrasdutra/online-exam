@@ -1,21 +1,9 @@
-.container{
-  display: flex;
-  justify-content: center;
-
+.exams-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
 
-.exam-container{
-  display:flex;
-  flex-direction: column;
-  width: 320px;
-
-  div{
-    padding:10px 0;
-  }
-
-  input{
-    width: calc(100% - 18px);
-    width: -moz-calc(100% - 18px);
-    width: -webkit-calc(100% - 18px);
-  }
+.full-width {
+  width: 100%;
 }
