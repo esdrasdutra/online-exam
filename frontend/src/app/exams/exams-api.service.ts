@@ -1,7 +1,7 @@
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { API_URL } from '../env';
 import { Exam } from './exam.model';
