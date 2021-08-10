@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -23,10 +24,10 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { AboutComponent } from './components/about/about.component';
-import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
 import { StartButtonComponent } from './components/start-button/start-button.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { DeleteModal } from './components/delete-modal/delete-modal';
 
 @NgModule({
   declarations: [
@@ -39,10 +40,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     AuthenticationButtonComponent,
     AuthNavComponent,
     AboutComponent,
-    DeleteButtonComponent,
     StartButtonComponent,
     HomeComponent,
-    NavBarComponent
+    NavBarComponent,
+    DeleteModal,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +53,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
+    MatDialogModule,
     NoopAnimationsModule,
     AuthModule.forRoot({
       ...env.auth

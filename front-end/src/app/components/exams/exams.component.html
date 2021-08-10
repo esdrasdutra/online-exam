@@ -1,6 +1,6 @@
 <header>
-  <h2>Exams</h2>
-  <p>Choose an exam and start studying.</p>
+  <h1>Available Tests</h1>
+  <p>Choose an test and start studying.</p>
 <header>
 
   <div class="exams">
@@ -12,7 +12,9 @@
 
         <div class="footer-buttons" >
           <app-start-button (click)="getExamById(exams.id)"></app-start-button>
-          <app-delete-button (click)="deleteExam(exams.id)"></app-delete-button>
+          <button mat-mini-fab color="warn" (click)="deleteExam(exams.id)">
+            <i class="material-icons">delete_outline</i>
+          </button>
         </div>
       </mat-card-content>
     </mat-card>

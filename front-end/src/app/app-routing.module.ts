@@ -5,12 +5,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { ExamsComponent } from './components/exams/exams.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { AboutComponent } from './components/about/about.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
     path:"",
-    component:ExamsComponent,
+    component:HomeComponent,
     pathMatch:'full'
+  },
+  {
+    path:"exams",
+    component:ExamsComponent
   },
   {
     path:"new-exam",

@@ -1,9 +1,9 @@
-import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/';
 import { Exam } from './exam.model';
 import { ExamsApiService } from '../../services/exam-api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteModal } from '../delete-modal/delete-modal';
 
 @Component({
   selector: 'exams',
@@ -16,10 +16,12 @@ export class ExamsComponent implements OnInit, OnDestroy {
   examSubs!: Subscription;
   exam!:Exam;
 
+  deleteExamModal = false;
+
   constructor(
     private examsApi: ExamsApiService,
-    private router: Router
-    ) {}
+    private dialog: MatDialog,
+  ) {}
 
   getExamById(id:number){
     this.examSubs = this.examsApi.getExamById(id).subscribe((res) => {
@@ -29,14 +31,19 @@ export class ExamsComponent implements OnInit, OnDestroy {
     const self = this;
   }
 
-  deleteExam(id:number){
-    this.examsApi
-    .deleteExam(id)
-    .subscribe((_data) => {
-      this.ngOnInit();
-    })
-  }
 
+  deleteExam(id:number){
+    const dialogRef = this.dialog.open(DeleteModal)
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res == true){
+        this.examsApi.deleteExam(id)
+        .subscribe((_data) => {
+          this.ngOnInit();
+        })
+      }
+    }, console.error);
+  }
 
   ngOnInit() {
     this.examsListSubs = this.examsApi.getExams().subscribe((res) => {
