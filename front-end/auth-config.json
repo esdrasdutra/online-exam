@@ -1,0 +1,7 @@
+{
+  "domain": "deved.us.auth0.com",
+  "clientId": "LFP0KszEZIaCMa7MTkxaSO12IgGpJQev",
+  "audience": "online-exam.deved.com.br",
+  "serverUrl": "http://localhost:5000",
+  "redirectUri": "http://localhost:4200"
+}

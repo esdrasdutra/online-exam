@@ -1,7 +1,12 @@
 # coding=utf-8
+import json
+from types import MappingProxyType
+from urllib.request import HTTPDefaultErrorHandler
 from flask import Flask, jsonify, request
+from sqlalchemy import schema
 
 from sqlalchemy.exc import SQLAlchemyError
+from werkzeug.datastructures import Headers
 
 from flask_cors import CORS, cross_origin
 
@@ -17,14 +22,14 @@ from .auth import AuthError, requires_auth
 app = Flask(__name__)
 
 # adding CORS to Flask
-cors = CORS(app, resources={r"/exams": {"origins": "*"}})
+cors = CORS(app, resources={r"/exams/*": {"origins": "*"}})
 
 # generate database schema
 Base.metadata.create_all(engine)
 
 @app.route('/exams')
 #@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
-def get_exams():
+def get_exams():    
     # fetching from the database
     session = Session()
     exam_objects = session.query(Exam).all()
@@ -36,6 +41,35 @@ def get_exams():
     # serializing as JSON
     session.close()
     return jsonify(exams)
+
+@app.route('/exams/<int:id>', methods=['GET', 'DELETE'])
+@cross_origin()
+def handleExamById(id):
+    
+    session = Session()
+    exam_object = session.query(Exam).get(id)
+
+    if request.method == 'GET':
+
+        schema = ExamSchema()
+        exam = schema.dump(exam_object)
+
+        if (exam == {}):
+            return {"ERROR":"Não Foi Possível encontrar Exame com o id: "+ str(id)}, 404
+        # serializing as JSON
+        session.close()
+        return jsonify(exam)
+
+    if request.method == 'DELETE':
+
+        session.delete(exam_object)
+
+        session.commit()
+
+        session.close()
+
+        return {"SUCCESS":"Item Excluído com Sucesso"}, 204    
+
 
 @app.route('/exams', methods=['POST'])
 #@requires_auth
@@ -55,6 +89,7 @@ def add_exam():
     new_exam = ExamSchema().dump(exam)
     session.close()
     return jsonify(new_exam), 201
+
     
 @app.errorhandler(AuthError)
 def handle_auth_error(ex):

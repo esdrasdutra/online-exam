@@ -1,7 +1,8 @@
 # coding=utf-8
 
+from typing import Text
 from marshmallow import Schema, fields
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Text
 from .entity import Entity, Base
 
 
@@ -10,6 +11,7 @@ class Exam(Entity, Base):
 
     title = Column(String)
     description = Column(String)
+    long_description = Column( Text)
 
     def __init__(self, title, description, long_description, created_by):
         Entity.__init__(self, created_by)
