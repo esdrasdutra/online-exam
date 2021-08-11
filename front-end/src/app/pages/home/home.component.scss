@@ -1,9 +1,137 @@
-img{
-  width: 100%;
-  height: auto;
-}
+#home-content{
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
 
-p{
-  font-size: 8px;
-  text-align: right;
+  aside{
+    flex: 7;
+    background:#1A237E;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 80px;
+
+    img {
+      max-width: 320px;
+      align-self: center;
+
+    }
+
+    strong {
+      font: 700 36px 'Roboto', sans-serif;
+      line-height: 42px;
+      margin-top: 16px;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 32px;
+      margin-top: 16px;
+      color:white;
+    }
+  }
+
+  main {
+    flex: 8;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    align-items: stretch;
+    text-align: center;
+
+    > img {
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin: 64px 0 24px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    form {
+      input {
+        height: 50px;
+        border-radius: 8px;
+        padding: 0 16px;
+        background: var(--white);
+        border: 1px solid var(--white-200);
+      }
+
+      button {
+        margin-top: 16px;
+      }
+
+      button, input {
+        width: 100%;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--white-300);
+      margin-top: 16px;
+
+      a {
+        color:var(--pink-300);
+      }
+    }
+  }
+
+  .create-room{
+    margin-top: 64px;
+    height: 50px;
+    border-radius: 8px;
+    font-weight: 500;
+    background:var(--red-300);
+    color:var(--white);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+
+    transition: 0.2s;
+
+    img {
+      margin-right: 8px;
+    }
+
+    &:hover{
+      background-color:var(--red-200);
+    }
+  }
+
+  .separator  {
+    font-size: 14px ;
+    color:gainsboro;
+    margin: 32px;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background:gainsboro;
+      margin-right: 16px;
+    }
+
+    &::after{
+      content: "";
+      flex: 1;
+      height: 1px;
+      background:gainsboro;
+      margin-left: 16px;
+    }
+  }
 }

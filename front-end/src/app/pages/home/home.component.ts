@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  imgSrc = "../../../assets/home_page.svg"
+  imgSrc = "../../../assets/home_logo.svg"
   imgAlt = "Home Page Image"
 
   ngOnInit(){}
