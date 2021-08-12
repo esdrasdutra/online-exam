@@ -6,17 +6,15 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './login-button.component.html',
   styles: [],
 })
-export class LoginButtonComponent implements OnInit, OnChanges {
+export class LoginButtonComponent implements OnInit{
 
-  @Input() buttonText = "Login"
+  @Input() buttonText:string = "Login";
 
   constructor(public auth: AuthService) {}
 
   ngOnInit(): void {}
 
-  ngOnChanges(): void {}
-
-  loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
+  loginWithPopup(): void {
+    this.auth.loginWithPopup();
   }
 }

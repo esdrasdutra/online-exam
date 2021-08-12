@@ -1,15 +1,17 @@
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { environment as env } from '../../environments/environment';
 import { Exam, ExamDTO } from '../components/exams/exam.model';
+import { HomeComponent } from '../pages/home/home.component';
 
 @Injectable()
 export class ExamsApiService {
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient) {
   }
 
   private static _handleError(err: HttpErrorResponse | any) {
@@ -41,5 +43,24 @@ export class ExamsApiService {
   saveExam(exam: ExamDTO): Observable<any> {
     return this.http
       .post(`${env.dev.serverUrl}/exams`, exam);
+  }
+}
+
+export class HomeService {
+
+  private homePage = new BehaviorSubject<boolean>(false); // {1}
+
+  get isInHome(){
+    return this.homePage.asObservable(); // {2}
+  }
+
+  constructor(){}
+
+  inHome(){
+    return this.homePage.next(false);
+  }
+
+  notHome(){
+    return this.homePage.next(true);
   }
 }

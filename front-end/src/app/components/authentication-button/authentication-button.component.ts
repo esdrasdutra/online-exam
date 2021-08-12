@@ -7,7 +7,9 @@ import { AuthService } from '@auth0/auth0-angular';
   styles: [],
 })
 export class AuthenticationButtonComponent implements OnInit {
-  constructor(public auth: AuthService) {}
+  constructor(
+    public auth: AuthService
+    ) {}
 
   ngOnInit(): void {}
 }

@@ -1,7 +1,7 @@
-<mat-toolbar color="primary" class="mat-elevation-z10">
+<mat-toolbar color="primary" class="mat-elevation-z10" *ngIf="isInHome$ | async as isInHome">
   <div class="nav-buttons">
     <div class="menu-buttons">
-      <button mat-button routerLink="/">Home</button>
+      <button mat-button routerLink="/" (click)="backHome()">Home</button>
       <button mat-button routerLink="/exams">Exams</button>
       <button mat-button routerLink="/profile">Profile</button>
       <button mat-button routerLink="/about">About</button>

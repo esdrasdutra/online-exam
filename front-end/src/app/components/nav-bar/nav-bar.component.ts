@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HomeService } from 'src/app/services/exam-api.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  isInHome$!: Observable<boolean>;
 
-  ngOnInit(): void {
+  constructor(private homeService: HomeService){}
+
+  backHome(){
+    this.homeService.inHome()
   }
 
+  ngOnInit(){
+    this.isInHome$ = this.homeService.isInHome;
+  }
 }

@@ -1,4 +1,4 @@
-import { ExamsApiService } from './services/exam-api.service';
+import { ExamsApiService, HomeService } from './services/exam-api.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -59,7 +59,7 @@ import { DeleteModal } from './components/delete-modal/delete-modal';
       ...env.auth
     }),
   ],
-  providers: [ExamsApiService,
+  providers: [ExamsApiService, HomeService,
     {provide: HTTP_INTERCEPTORS,
     useClass: AuthHttpInterceptor,
     multi: true,}],

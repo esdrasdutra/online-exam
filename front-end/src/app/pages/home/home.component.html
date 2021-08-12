@@ -1,20 +1,20 @@
-
 <div id="home-content">
   <aside>
     <img src="{{imgSrc}}" alt="{{imgAlt}}" />
-    <strong> Test their knowledge!</strong>
+    <strong>Test the knowledge of your audience!</strong>
     <p>Exam in a easy way.</p>
   </aside>
 
   <main>
     <div class="main-content">
 
-      <app-login-button></app-login-button>
+      <button mat-raised-button color="primary" (click)="homeOut()">
+        SEARCH FOR AN EXAM
+      </button>
 
-      <div class="separator">ou entre e uma sala</div>
+      <div class="separator">OR</div>
 
-      <span>O QUE TEREMOS AQUI?</span>
-
+      <app-login-button buttonText="CREATE AN ONLINE EXAM NOW"></app-login-button>
     </div>
 
   </main>
